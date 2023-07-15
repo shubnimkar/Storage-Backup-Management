@@ -1,4 +1,4 @@
-d# Prerequisites: 
+# Prerequisites: 
 
 1. Add new hard disk drive (HDD): Physically connect the new hard disk drive to the servers. 
 
