@@ -1,0 +1,39 @@
+==================================================================================================
+                        Configure RAID-1 Drive 
+==================================================================================================
+                 ADD Two new hardisk in centos7 system
+==================================================================================================
+
+[root@localhost ~]# lsblk
+[root@localhost ~]# yum install mdadm
+[root@localhost ~]# mdadm --create --verbose /dev/md1 --level=1 --raid-devices=2 /dev/sdd /dev/sde
+[root@localhost ~]# mkfs.ext4 /dev/md1
+[root@localhost ~]# mkdir /mnt/raid1-drive
+[root@localhost ~]# mount /dev/md1 /mnt/raid1
+[root@localhost ~]# df -h
+[root@localhost ~]# blkid
+        or
+[root@localhost ~]# blkid /dev/md1
+                   -------------------------------------------
+  Copy UUID  eg:-   UUID=80052ded-0863e1e6-bbccf042-108df625
+                   -------------------------------------------
+[root@localhost ~]# vi /etc/fstab
+                    ------------------------------------------------------------------------------
+             eg:-     UUID=e9fefb27-b78f-4af0-969c-44f94c4b3022 /mnt/raid1 ext4 defaults 0 0
+                    ------------------------------------------------------------------------------
+                     Add UUID & save
+                    ------------------------------------------------------------------------------ 
+[root@localhost ~]# df -h
+[root@localhost ~]# mount -av
+[root@localhost ~]# reboot
+[root@localhost ~]# mdadm --detail /dev/md1
+[root@localhost ~]# cd /mnt/raid1
+[root@localhost ~]# echo raid1 > testfile.txt
+==================================================================================================
+                        Stop and remove a RAID array
+==================================================================================================
+
+[root@localhost ~]# umount /mnt/raid1 (remove drive from system)
+[root@localhost ~]# mdadm --stop /dev/md1
+[root@localhost ~]# mdadm --remove /dev/md1
+[root@localhost ~]# cat /mnt/raid1/testfile.txt

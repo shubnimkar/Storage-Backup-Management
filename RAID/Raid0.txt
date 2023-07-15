@@ -1,0 +1,40 @@
+==================================================================================================
+                        Configure RAID-0 Drive 
+==================================================================================================
+                 ADD Two new hardisk in centos7 system
+==================================================================================================
+
+
+[root@localhost ~]# blkid
+[root@localhost ~]# lsblk
+[root@localhost ~]# yum install mdadm
+[root@localhost ~]# mdadm --create --verbose /dev/md0 --level=0 --raid-devices=2 /dev/sdb /dev/sdc
+[root@localhost ~]# mkfs.ext4 /dev/md0
+[root@localhost ~]# mkdir /mnt/raid0
+[root@localhost ~]# mount /dev/md0 /mnt/raid0
+[root@localhost ~]# df -h
+[root@localhost ~]# blkid
+        or
+[root@localhost ~]# blkid /dev/md0
+                   -------------------------------------------
+  Copy UUID  eg:-   UUID=80052ded-0863e1e6-bbccf042-108df625
+                   -------------------------------------------
+[root@localhost ~]# vi /etc/fstab
+                    ------------------------------------------------------------------------------
+              eg:-    UUID=e9fefb27-b78f-4af0-969c-44f94c4b3022 /mnt/raid0 ext4 defaults 0 0
+                    ------------------------------------------------------------------------------
+                     Add UUID & save
+                    ------------------------------------------------------------------------------
+[root@localhost ~]# mdadm --detail /dev/md0
+[root@localhost ~]# mount -av
+[root@localhost ~]# reboot
+[root@localhost ~]# mdadm --detail /dev/md0
+[root@localhost ~]# df -h
+
+==================================================================================================
+                        Stop and remove a RAID array
+==================================================================================================
+
+[root@localhost ~]# umount /mnt/raid0
+[root@localhost ~]# mdadm --stop /dev/md0
+[root@localhost ~]# mdadm --remove /dev/md0
