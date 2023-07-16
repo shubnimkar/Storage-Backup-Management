@@ -8,7 +8,7 @@
 * AT 85% CEPH cluster gives warning , and at 90% cluster only become read only
 * coz we require space for metadata
 * eraser coding
-* 
+* default chunk/block size = 4MB
 ### CEPH Architecture
 
 ![Screenshot 2023-07-16 102755](https://github.com/shubnimkar/Storage-Backup-Management/assets/46809421/9dc67446-b3b4-4ab3-8f2f-f047fa4b8882)
