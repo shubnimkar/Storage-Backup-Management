@@ -237,7 +237,10 @@ Please note, you will need to replace placeholders like `192.168.xxx.xxx` with y
 35. Create a Ceph storage pool:
     
           ceph osd pool create rbd 50 50
-    
+          ceph osd pool create rbd placement group - replication factor
+    if OSD < 50 then make 100 pg recomended
+
+    calculation = no of disk*100/replication factor
 
 ## Ceph Client Configuration
 
