@@ -232,9 +232,11 @@ Please note, you will need to replace placeholders like `192.168.xxx.xxx` with y
           ceph health
           ceph health detail
           ceph -s
+          sudo ceph osd tree
+          sudo ceph -s
           
 
-35. Create a Ceph storage pool:
+36. Create a Ceph storage pool:
     
           ceph osd pool create rbd 50 50
           ceph osd pool create rbd placement group - replication factor
@@ -260,3 +262,4 @@ Please note, you will need to replace placeholders like `192.168.xxx.xxx` with y
           mkdir -p /mnt/mydisk
           mount /dev/rbd0 /mnt/mydisk
           df -h
+s
