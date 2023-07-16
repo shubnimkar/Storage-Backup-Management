@@ -227,7 +227,7 @@ Please note, you will need to replace placeholders like `192.168.xxx.xxx` with y
 
 ## Verify the Ceph Storage Cluster
 
-34. Check the health of the Ceph cluster and its detailed status:
+34. Check the health of the Ceph cluster and its detailed status with root user:
     
           ceph health
           ceph health detail
