@@ -234,7 +234,7 @@ Please note, you will need to replace placeholders like `192.168.xxx.xxx` with y
           ceph -s
           sudo ceph osd tree
           sudo ceph -s
-          
+          sudo ceph osd pool ls detail | grep rbd
 
 36. Create a Ceph storage pool:
     
@@ -254,7 +254,7 @@ Please note, you will need to replace placeholders like `192.168.xxx.xxx` with y
           rbd feature disable disk01 exclusive-lock object-map fast-diff deep-flatten
           rbd map disk01
           rbd showmapped
-    
+          
 
 37. Create a filesystem on the new block device, create a mount point, and mount the block device:
     
