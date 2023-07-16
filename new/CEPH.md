@@ -19,6 +19,6 @@
 * RADOS (Reliable Autonomic Distributed Object Store)
 * OSD - Object storage daemon (where main data is stored)
 * MON- Monitor
-* Meta- Keeps record f where and what is written on storage
+* Meta- Keeps record of where and what is written on storage(METADATA)
 * CRUSH -  CRUSH algorithm computes storage locations in order to determine how to store and retrieve data
 * LIBRADOS - librados provides low-level access to the RADOS service.
