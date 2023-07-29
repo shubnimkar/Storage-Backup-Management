@@ -12,9 +12,10 @@ This is achieved using the `lsblk` command. `lsblk` lists information about all 
 
 
     [root@nfs-client ~]# lsblk
-
-![06235a58-9a19-4524-9c49-b78b70d98fe5](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/025521c0-9ffd-4869-92a6-69b4068dfb3a)
-
+    
+<p align="center">
+<img src=https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/025521c0-9ffd-4869-92a6-69b4068dfb3a>
+<p>
 
 Here, `sdb` and `sdc` are the new hard disks that you want to add.
 
@@ -173,9 +174,10 @@ Remember to add the disks to `/etc/fstab` if you want them to be mounted automat
 The command lvremove can be used to remove logical volumes. We should make sure a logical volume does not have any valuable data stored on it before we attempt to remove it. Moreover, we should make sure the volume is not mounted.
 
     lvremove /dev/mapper/DEMO-demo_lab
-
-![c98acaba-f604-4db0-8a13-9930d09bedf5](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/512e7080-6899-4561-8bad-54fc92ad032b)
-
+    
+<p align="center">
+<img src=https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/512e7080-6899-4561-8bad-54fc92ad032b>
+<p>
 
 Now to remove the DEMO volume
 
