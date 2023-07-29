@@ -10,7 +10,8 @@ This is achieved using the `lsblk` command. `lsblk` lists information about all 
 
     [root@nfs-client ~]# lsblk
 
-![Capture](https://github.com/shubnimkar/SBM/assets/46809421/dc50a0c6-a0df-44c7-a066-630b56dc4bb9)
+![06235a58-9a19-4524-9c49-b78b70d98fe5](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/025521c0-9ffd-4869-92a6-69b4068dfb3a)
+
 
 Here, `sdb` and `sdc` are the new hard disks that you want to add.
 
@@ -21,13 +22,15 @@ This is done with `pvcreate`. This initializes physical volume(s) for later use 
 
     pvcreate /dev/sdb /dev/sdc
    
-![2](https://github.com/shubnimkar/SBM/assets/46809421/3cfc706e-b393-42a4-bec7-0a5bd3cc79c0)
+![681f7298-7039-41bb-8089-f4c9acba7db5](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/fd168069-b8d3-4ee1-bcde-cb4bd9ac7eb6)
+
 
 pvdisplay command for view volumes
 
     pvdisplay
 
-![3](https://github.com/shubnimkar/SBM/assets/46809421/9d0682cf-aaef-4637-898b-79f1eee0ae84)
+![4f00aaea-b9e6-4605-90e0-5c3c0cf19796](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/c7a80e87-0474-4ccb-913f-cd6ff16d6db8)
+
 
 3. Create a volume group:
 
@@ -35,12 +38,15 @@ pvdisplay command for view volumes
 
 
     vgcreate HPCSA /dev/sdb /dev/sdc
-![4](https://github.com/shubnimkar/SBM/assets/46809421/928181fe-fcc9-478a-956c-d7abd18e5361)
+
+![18f6c737-6356-4308-b855-1b5731ee5451](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/810b9b5c-bb59-48da-ac5a-0df692949df2)
+
 
 vgdisplay to view
 
     vgdisplay
-![5](https://github.com/shubnimkar/SBM/assets/46809421/21abdcf3-bd05-4816-b3db-d0284ef5a410)
+![baddf797-79d1-4e46-a9c9-f720612f32a4](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/b0134517-aec7-4356-b32b-62c58378c2cc)
+
 
 4. Create a logical volume:
 
@@ -49,14 +55,14 @@ vgdisplay to view
 
     lvcreate -n demo_lab --size 1G DEMO
 
-![6](https://github.com/shubnimkar/SBM/assets/46809421/3e187407-aeca-436b-9951-069b7ae0f535)
-
+![448a0eef-2727-421a-bc8b-5ae1b4764b17](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/a24d92b7-7b47-4b2d-8619-323a8d42a2a0)
 
 lvdisplay to view
 
-lvdisplay
+    lvdisplay
 
-![7](https://github.com/shubnimkar/SBM/assets/46809421/fdacf9c2-0d01-478f-bb54-bd9724aadef4)
+![f19c322f-66e4-4ce9-b309-29429f40d6b7](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/c672fb27-3b2d-4df7-ab42-4a6e770c136b)
+
 
 5. Partition the new logical volume:
 
@@ -70,6 +76,9 @@ then press p for primary
 then mention size or press enter , enter
 then again will ask for option press w to write and exit
 
+![ad514619-d9bb-480d-96f2-09dcff57ae4b](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/2a99d319-401a-49ef-9edc-97eb73ae2b0b)
+
+
     Error:
     WARNING: Re-reading the partition table failed with error 22: Invalid argument.
     The kernel still uses the old table. The new table will be used at
@@ -78,7 +87,7 @@ then again will ask for option press w to write and exit
     
     [root@localhost ~]# partprobe /dev/HPCSA/hpcsa_lab
 
-![8](https://github.com/shubnimkar/SBM/assets/46809421/a5ea24e7-cfb4-4066-8764-b711acdf7bc1)
+![93e6964c-04d1-4bef-aedf-a721a73e5abe](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/4e154707-709e-41f5-b8b2-4d6a938cbfb1)
 
 
 6. Create a filesystem:
@@ -88,7 +97,7 @@ then again will ask for option press w to write and exit
 
     mkfs.ext4 /dev/mapper/DEMO-demo_lab
 
-![12](https://github.com/shubnimkar/SBM/assets/46809421/5dd952b7-b4bd-4884-ae86-5689487fd3fb)
+![dfc69b79-f46a-4b6b-b907-0c0854be6e98](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/19e23763-850f-4d44-a2bd-e8e4adb6ba63)
 
 
 7. Create a mount point and mount the logical volume:
@@ -98,8 +107,9 @@ Create a directory that will serve as the mount point, and then use the `mount` 
 
     mkdir our-demo
     mount /dev/mapper/DEMO-demo_lab our-demo
+    
+![1b4accf9-d037-4f7d-991a-397d5cf65364](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/edf3fe04-15a7-4bf7-94a9-e27e4edeab1c)
 
-![13](https://github.com/shubnimkar/SBM/assets/46809421/5077bec8-731d-422b-a54c-d0947d17bef6)
 
 
 8. Extend the logical volume:
@@ -109,7 +119,7 @@ Create a directory that will serve as the mount point, and then use the `mount` 
 
     lvextend -L +2G /dev/mapper/DEMO-demo_lab
 
-![14](https://github.com/shubnimkar/SBM/assets/46809421/f85e74d8-6888-436f-8e26-698aae98f02d)
+![a6039f32-78c5-43e4-848f-b68b01e68acf](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/dd8f1db1-fcc4-4378-9b34-4c608fe6de3c)
 
 
 9. Resize the filesystem:
@@ -119,7 +129,8 @@ Create a directory that will serve as the mount point, and then use the `mount` 
 
     resize2fs /dev/mapper/DEMO-demo_lab
 
-![15](https://github.com/shubnimkar/SBM/assets/46809421/3a56be1a-a19d-453a-a4c1-5b1236c43c31)
+![7afca6b4-66b4-4c1a-8e3c-5f60931ba297](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/5039c443-4077-4006-9ae2-0d24eae2bfc5)
+
 
 10. Create a snapshot:
 
@@ -128,26 +139,29 @@ Create a directory that will serve as the mount point, and then use the `mount` 
 
     lvcreate -L 1GB -s -n demo_lab_snap /dev/mapper/DEMO-demo_lab
 
-![16](https://github.com/shubnimkar/SBM/assets/46809421/36524f29-73f9-425b-b52c-12b49013c006)
+![8366f228-41c9-4b4e-ab77-cffd64501280](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/e8dcb527-846f-4a44-8d87-801ce7db93f6)
 
 
 11. Merge the snapshot:
 
 `lvconvert` with `--merge` will merge the snapshot back into its origin volume. If both origin and snapshot volume are not open the merge will start immediately, otherwise, it will be delayed until the origin volume becomes inactive.
 
-![17](https://github.com/shubnimkar/SBM/assets/46809421/1bfe9800-8c3e-436b-be20-6a71ed4ec444)
-
-
     lvconvert --merge /dev/mapper/DEMO-demo_lab_snap
 
-![18](https://github.com/shubnimkar/SBM/assets/46809421/13eb2ed8-efef-4ce8-a008-daa920b8e039)
+![f54fe5f0-e836-4e98-8714-6761af42f2ec](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/2554002e-ccde-434c-b4dd-901907f09a68)
+
 
 Remember to add the disks to `/etc/fstab` if you want them to be mounted automatically at system startup.
+
+![eff5a421-b11a-4110-931c-67ba9aec36e9](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/d6d7072b-5019-44c3-b120-22b906322477)
+
  12. Mirror
- it creates mirror of data in all physical  drives
+
+ It creates mirror of data in all physical  drives
  
     lvcreate -L 2GB -m1 -n testmirror DEMO
-![19](https://github.com/shubnimkar/SBM/assets/46809421/3241fcd3-218f-4715-89a2-739eac740443)
+
+![7ebcaf7c-d8c7-418b-bc33-a15946050200](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/17bb1f36-7fd6-420a-b02f-4a711560b190)
 
   Logical volume "testmirror_lv" created.
 
@@ -157,10 +171,12 @@ The command lvremove can be used to remove logical volumes. We should make sure 
 
     lvremove /dev/mapper/DEMO-demo_lab
 
-![20](https://github.com/shubnimkar/SBM/assets/46809421/e7d2db0c-8f84-4df6-a855-29f8b95226c3)
+![c98acaba-f604-4db0-8a13-9930d09bedf5](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/512e7080-6899-4561-8bad-54fc92ad032b)
+
 
 Now to remove the DEMO volume
 
     lvremove /dev/mapper/DEMO
+    
+![4ef8ce8c-4da7-4e11-988e-936149b04e55](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/84dde010-c3d5-4a56-aa2f-bc8b8d06c837)
 
-![21](https://github.com/shubnimkar/SBM/assets/46809421/eb671165-1345-4bdb-abe2-0c109af1ce0e)
