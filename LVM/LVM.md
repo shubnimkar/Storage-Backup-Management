@@ -1,9 +1,10 @@
 # Logical Volume Manager
 
-To perform the practical add 2 HDD in VM
+### To perform the practical add 2 HDD in VM
 
-![20GB](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/52a7f9ba-f08e-434c-8f59-e7f2ede02561)
-
+<p align="center">
+    <img src=https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/52a7f9ba-f08e-434c-8f59-e7f2ede02561>
+</p>
 
 1. Identify the new hard disks:
 
