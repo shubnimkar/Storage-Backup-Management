@@ -2,6 +2,8 @@
 
 To perform the practical add 2 HDD in VM
 
+![20GB](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/52a7f9ba-f08e-434c-8f59-e7f2ede02561)
+
 
 1. Identify the new hard disks:
 
