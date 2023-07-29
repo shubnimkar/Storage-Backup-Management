@@ -1,0 +1,40 @@
+dnf install @postgresql:13 -y
+/usr/bin/postgresql-setup --initdb
+cd /var/lib/pgsql/data
+nano pg_hba.conf
+
+#Add line in last
+local   all             all  trust
+host    all             all             127.0.0.1/32  trust
+
+systemctl start postgresql
+
+
+yum install wget nano 
+wget https://download.bareos.org/current/EL_8/add_bareos_repositories.sh
+chmod 755 add_repositories.sh
+sh ./add_bareos_repositories.sh
+yum install bareos -y
+systemctl stop firewalld
+setenforce 0
+
+
+su postgres -c /usr/lib/bareos/scripts/create_bareos_database
+su postgres -c /usr/lib/bareos/scripts/make_bareos_tables
+su postgres -c /usr/lib/bareos/scripts/grant_bareos_privileges
+
+
+systemctl enable bareos-dir && systemctl start bareos-dir && systemctl status bareos-dir
+systemctl enable bareos-sd && systemctl start bareos-sd && systemctl status bareos-sd
+systemctl enable bareos-fd && systemctl start bareos-fd && systemctl status bareos-fd
+dnf install bareos-webui
+cd /etc/bareos/bareos-dir.d/console/
+mv admin.conf.example admin.conf
+systemctl restart bareos-dir
+systemctl start httpd
+
+http://192.168.154.158/bareos-webui/
+
+/etc/bareos/bareos-dir.d/fileset
+change backup parameter
+systemctl restart bareos-dir
