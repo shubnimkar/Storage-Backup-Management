@@ -82,3 +82,23 @@
 <p align="center">    
 <img src=https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/1dfc0a02-5cdf-4080-adc2-95563fd65cac>
 <p>
+
+### To unmount the raid partition
+
+    umount /mnt/raid0
+    
+### check for partitions ,it'll be missing from list 
+
+    df -h 
+
+<p align="center">
+<img src=https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/05b175d3-6413-4a13-b7bb-bdb1db2c67d9>
+<p>
+
+### Stop the raid 0 partition
+
+    mdadm --stop /dev/md0
+
+<p align="center">
+<img src=https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/1b9348d6-69a2-4189-bf31-88d4f8a955e6>
+<p>
