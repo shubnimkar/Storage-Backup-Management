@@ -48,7 +48,7 @@
 
 ### Make filesystem
 
-    mkfs.ect4 /dev/md0p1
+    mkfs.ext4 /dev/md0p1
 <p align="center">    
 <img src=https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/db26b6fe-1ceb-4c3d-a4bd-5bd8f0d4ab0a>
 <p>
