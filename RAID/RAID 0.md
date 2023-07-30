@@ -1,3 +1,15 @@
+<h1 align="center">RAID 0</h1>
+
+### To implement this follow config below
+
+* 1 BOOT PARTITION
+* ADD 2 HDD OF ANY SIZE
+
+<p align="center">
+<img src=https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/a20e5923-23d9-432d-88ff-710ff4b153b8>
+<p>
+
+
 ### To Check if our harddisk are mounted or not 
 
     lsblk
