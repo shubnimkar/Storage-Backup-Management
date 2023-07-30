@@ -61,6 +61,8 @@
 
     cd /mnt/raid0
     ll
+![13](https://github.com/shubnimkar/Storage-and-Backup-Management/assets/46809421/f90d8d30-9db0-478a-9281-54cff7cbb48f)
+
 
 ### Check for partitions and used space by command below
 
